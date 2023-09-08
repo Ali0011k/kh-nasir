@@ -10,5 +10,5 @@ and then you can run your server<br/>
 > dont use master branch for editing files <br/>
 checkout to develop branch and edit files on it
 
-> [!INFORMATION]
+> [!NOTE]
 > created by Ali Khani and Amirabass Akhoondi
