@@ -1,0 +1,35 @@
+{% extends 'users/adminlte.html' %}
+{% load crispy_forms_tags %}
+{% block title  %}به روز رسانی بخشنامه{% endblock %}
+
+{% block content %}
+    <div class="col-md-12">
+        <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title mb-0 float-left">ویرایش بخشنامه</h3>
+        </div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">{% csrf_token %}
+                    <div class="form-row">
+                        <div class="form-group col-6">
+                            {{form.title|as_crispy_field }}
+                        </div>
+                        <div class="form-group col-md-6 mb-0">
+                            {{form.text|as_crispy_field }}
+                        </div>
+                        <div class="form-group col-md-6 mb-0">
+                            {{form.image|as_crispy_field }}
+                        </div>
+                        {% if user.is_superuser%}
+                        <div class="form-group col-md-6 mb-0">
+                            {{form.status|as_crispy_field }}
+                        </div>
+                    </div>
+                    <button class="btn btn-success">ویرایش بخشنامه</button>
+                    <a class="btn btn-danger" href="{% url 'users:Circular-delet' circular.pk %}">حذف بخشنامه</a>
+                    {%endif%}
+
+            </form>
+    </div>
+
+{% endblock %}

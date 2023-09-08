@@ -1,0 +1,262 @@
+  {% load static %}
+  
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4" style="text-align: start;">
+    <!-- Brand Logo -->
+    <a href="index3.html" class="brand-link">
+      <img src="{% static 'admin-lte/dist/img/logo.png' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+           style="opacity: .8">
+      <span class="brand-text font-weight-light">هنرستان خواجه نصیر</span>
+    </a>
+  
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="{% static 'admin-lte/dist/img/avatar5.png' %}" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="#" class="d-block">{{request.user.get_full_name}}</a>
+        </div>
+      </div>
+  
+      <!-- Sidebar Menu -->
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false" style="padding-right: 0;">
+        <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>
+              بخش انتشار
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{% url 'users:notification-list' %}" class="nav-link">
+                <i class="fa fa-list nav-icon"></i>
+                <p>اطلاعیه ها</p>
+                <span class="right badge badge-primary">لیست اطلاعیه</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'users:notification-create' %}" class="nav-link">
+                <i class="fa fa-edit nav-icon"></i>
+                <p>اطلاعیه ها</p>
+                <span class="right badge badge-success">افزودن اطلاعیه</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'users:Circular-list'%}" class="nav-link">
+                <i class="fa fa-list nav-icon"></i>
+                <p>بخش نامه ها</p>
+                <span class="right badge badge-primary">لیست بخشنامه</span>
+              </a>
+            </li>
+            {% if request.user.is_superuser %}
+            <li class="nav-item">
+              <a href="{% url 'users:Circular-create'%}" class="nav-link">
+                <i class="fa fa-edit nav-icon"></i>
+                <p>بخش نامه ها</p>
+                <span class="right badge badge-success">افزودن بخشنامه</span>
+              </a>
+            </li>
+            {% endif %}
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>
+              نمونه کار ها
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{% url 'users:Works-list' %}" class="nav-link">
+                <i class="fa fa-list nav-icon"></i>
+                <p>نمونه کار ها</p>
+                <span class="right badge badge-primary">لیست نمونه کار</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'users:Works-create' %}" class="nav-link">
+                <i class="fa fa-edit nav-icon"></i>
+                <p>نمونه کار ها</p>
+                <span class="right badge badge-success">افزودن نمونه کار</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        
+        {% if request.user.is_superuser %}
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>
+              کنترل کاربر ها
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{% url 'users:User-list' %}" class="nav-link">
+                <i class="fa fa-users nav-icon"></i>
+                <p>کاربر ها</p>
+                <span class="right badge badge-primary">لیست کاربر</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'users:User-create' %}" class="nav-link">
+                <i class="fa fa-users nav-icon"></i>
+                <p>کاربر ها</p>
+                <span class="right badge badge-success">افزودن کاربر</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        {% endif %}
+        {% if request.user.is_superuser %}
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>
+              گالری تصاویر
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{% url 'users:Circular_Image-List' %}" class="nav-link">
+                <i class="fa fa-list nav-icon"></i>
+                <p>تصاویر بخشنامه ها</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'users:Work_Image-List' %}" class="nav-link">
+                <i class="fa fa-list nav-icon"></i>
+                <p>تصاویر نمونه کار ها</p>
+              </a>
+            </li>
+          </ul>
+          {% endif %}
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                سوالات و جزوه ها
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{% url 'users:faq-list' %}" class="nav-link">
+                  <i class="fa fa-list nav-icon"></i>
+                  <p>سوالات</p>
+                  <span class="right badge badge-primary">لیست سوالات</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'users:faq-create' %}" class="nav-link">
+                  <i class="fa fa-edit nav-icon"></i>
+                  <p>سوالات</p>
+                  <span class="right badge badge-success">افزودن سوال</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'users:Handout-list' %}" class="nav-link">
+                  <i class="fa fa-list nav-icon"></i>
+                  <p>جزوه ها</p>
+                  <span class="right badge badge-primary">لیست جزوه ها</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'users:Handout-create'%}" class="nav-link">
+                  <i class="fa fa-edit nav-icon"></i>
+                  <p>جزوه ها</p>
+                  <span class="right badge badge-success">افزودن جزوه ها</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </li>
+        {% if request.user.is_superuser %}
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>
+              رشته ها
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="/sectionchoice/List/" class="nav-link">
+                <i class="fa fa-list nav-icon"></i>
+                <p>رشته ها</p>
+                <span class="right badge badge-primary">لیست رشته ها</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/sections/handout/create/" class="nav-link">
+                <i class="fa fa-edit nav-icon"></i>
+                <p>رشته ها</p>
+                <span class="right badge badge-success">افزودن رشته</span>
+              </a>
+            </li>
+
+          </ul>
+          {% endif %}
+          {% if request.user.is_superuser %}
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                اطلاعات هنرستان
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/picture/list/" class="nav-link">
+                  <i class="fa fa-list nav-icon"></i>
+                  <p>تصاویر</p>
+                  <span class="right badge badge-primary">لیست تصاویر</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/picture/create/" class="nav-link">
+                  <i class="fa fa-edit nav-icon"></i>
+                  <p>تصاویر</p>
+                  <span class="right badge badge-success">افزودن تصویر</span>
+                </a>
+              </li>
+
+
+              <li class="nav-item">
+                <a href="/HomeInfo/List/" class="nav-link">
+                  <i class="fa fa-list nav-icon"></i>
+                  <p>اطلاعات کلی</p>
+                  <span class="right badge badge-primary">مشاهده</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/HomeInfo/create/" class="nav-link">
+                  <i class="fa fa-edit nav-icon"></i>
+                  <p>افزودن اطلاعات</p>
+                  <span class="right badge badge-danger">تنها یک بار</span>
+                </a>
+              </li>
+  
+            </ul>
+            {% endif %}
+        </li>
+      </li>
+      </ul>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+  

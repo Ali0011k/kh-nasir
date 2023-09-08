@@ -1,0 +1,45 @@
+{%extends 'base.html'%}
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  {%block head%}
+  <link rel="stylesheet" href=" {% static 'css/notification_detail.css' %} ">
+  <link rel="stylesheet" href=" {% static 'css/rtl.css' %} ">
+
+    <title>اطلاعات اطلاعیه</title>
+    <style>
+      p{
+      text-align: right;
+      color: #362c2c;
+      font-size: 19px;
+    }
+    </style>
+    {%endblock head%}
+  </head>
+<body>
+
+    {%block content%}
+
+    <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <div class="card mt-4 shadow-lg">
+              <div class="card-body">
+                <h3 class="card-title text-center text-primary">{{notification.title}}</h3>
+                <h4 class="card-text text-justify text-center" style="margin-top: 30px;">{{notification.text|safe}}</h4>
+                <p class="card-text text-center" style="margin-top: 20px;"><small class="text-muted">ساخته شده در تاریخ {{notification.jpublish}}</small></p>
+                <a class="back btn btn-outline-danger" href="/notifications/" style="margin-top: 20px;"> بازگشت </a>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      {%endblock content%}
+
+</body>
+</html>

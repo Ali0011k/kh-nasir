@@ -1,0 +1,63 @@
+{%extends 'base.html'%}
+{%load static%}
+<!DOCTYPE html>
+<html>
+<head>
+  {%block head%}
+  <title>جزوه ها</title>
+  <style>
+
+	.product-item {
+		margin-top: 20px;
+		border: 1px solid #ddd;
+		border-radius: 4px;
+		padding: 15px;
+		margin-bottom: 20px;
+	}
+
+	.product-image {
+		max-width: 100%;
+		height: auto;
+		margin: 0!important;
+	}
+
+	.product-title {
+		text-align: center;
+		font-size: 18px;
+		margin-top: 10px;
+	}
+
+	.product-description {
+		margin-top: 5px;
+		text-align: center;
+	}
+
+	.product-button {
+		margin-top: 10px;
+		width: 100%;
+	}
+</style>
+{%endblock head%}
+</head>
+<body>
+{%block content%}
+
+    
+	<section class="product-section">
+		<div class="container">
+            <div class="row">
+                {% for handout in handouts %}
+                <div class="col-md-4">
+					<div class="product-item">
+						<h4 class="product-title">جزوه های رشته ی {{handout.display_text}}</h4>
+						<a href="/handout/detail/section/?value={{handout.value}}" class="btn btn-primary product-button">جزئیات</a>
+					</div>
+				</div>
+                {% endfor %}
+			</div>
+		</div>
+	</section>
+
+    {%endblock content%}
+</body>
+</html>

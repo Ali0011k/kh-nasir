@@ -1,0 +1,47 @@
+{% extends 'users/adminlte.html' %}
+
+{% block title  %}لیست نمونه کار ها{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+      <div class="card">
+        <!-- /.card-header -->
+        <div class="card-body table-responsive p-0">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>نام نمونه کار</th>
+                <th>تصویر نمونه کار</th>
+                <th>ویراش و حذف</th>
+                <th>وضعیت</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for work in object_list %}
+                {% if user.is_superuser or work.status == 'd' %}
+                  <tr>
+                    <td>
+                      <a href="{% url 'users:Works-update' work.pk %}"> {{work.name}}</a>
+                    </td>
+                      <td><a href="{{work.image.url}}" target="_blank" rel="noopener noreferrer"><img src="{{work.image.url}}" width="100px" height="60px"></a></td>
+                      <td><a class="badge badge-primary" style="font-size: 13px;" href="{% url 'users:Works-update' work.pk %}">ویرایش و حذف</a></td>
+                      <td>
+                        {% if work.status == 'p' %}
+                          <span class="badge badge-success">منتشر شده</span>
+                        {% else %}
+                              <span class="badge badge-danger">پیش نویس</span>
+                        {% endif %}
+                      </td>
+                  </tr>
+                  {%endif%}
+                {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+    </div>
+  </div>
+{% endblock %}

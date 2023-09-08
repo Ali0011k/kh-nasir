@@ -1,0 +1,108 @@
+*,
+*:before,
+*:after{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    transition: 0.8s!important;
+}
+*{
+    transition: 0.4s;
+}
+body{
+    background-image: url(https://media.hamshahrionline.ir/d/2020/08/09/4/4479161.jpg);
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+a{
+    text-decoration: none;
+    color: #000!important;
+}
+
+form{
+    height: 580px;
+    width: 400px;
+    background-color: rgba(255,255,255,0.13);
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 50%!important;
+    left: 50%;
+    border-radius: 10px;
+    backdrop-filter: blur(2px);
+    border: 2px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 40px rgba(8,7,16,0.6);
+    padding: 50px 35px;
+}
+form *{
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    outline: none;
+    border: none;
+}
+form h3{
+    color: #000!important;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 42px;
+    text-align: center;
+}
+
+label{
+    color: #000!important;
+    width: 100%;
+    text-align: end;
+    margin-top: 30px;
+    font-size: 16px;
+    font-weight: 500;
+}
+input{
+    display: block;
+    height: 50px;
+    width: 100%;
+    background-color: rgba(255,255,255,0.07);
+    border-radius: 3px;
+    padding: 0 10px;
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 300;
+}
+::placeholder{
+    color: #e5e5e5;
+}
+button[type="submit"]{
+    margin-top: 50px!important;
+    width: 100%;
+    background-color: #b6f26cd6!important;
+    color: #080710;
+    padding: 15px 0;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 3px!important;
+    cursor: pointer;
+}
+button:hover{
+    background-color: #ffffffe6;
+}
+.social{
+  width: 100%;
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #D0FCB3!important;
+}
+.social div{
+  width: 100%;
+  border-radius: 3px;
+  padding: 5px 10px 10px 5px;
+
+  color: #eaf0fb!important;
+  text-align: center;
+}
+.social .fb{
+  margin-left: 25px;
+}
+.social i{
+  margin-right: 4px;
+}

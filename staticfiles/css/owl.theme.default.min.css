@@ -1,0 +1,40 @@
+/* Owl Carousel Default Theme CSS */
+.owl-carousel .owl-item {
+    display: none;
+    -webkit-backface-visibility: hidden;
+    position: relative;
+    outline: none;
+}
+
+.owl-carousel .owl-item img {
+    max-width: 100%;
+    display: block;
+    width: auto;
+    height: auto;
+}
+
+.owl-carousel .owl-nav.disabled,
+.owl-carousel .owl-dots.disabled {
+    display: none;
+}
+
+.owl-carousel .owl-nav .owl-prev,
+.owl-carousel .owl-nav .owl-next,
+.owl-carousel .owl-dot {
+    cursor: pointer;
+    display: inline-block;
+    zoom: 1;
+}
+
+.owl-carousel .owl-dot {
+    height: 10px;
+    width: 10px;
+    margin: 0 5px;
+    border-radius: 50%;
+    background: #ccc;
+    display: inline-block !important;
+}
+
+.owl-carousel .owl-dot.active {
+    background: #000;
+}

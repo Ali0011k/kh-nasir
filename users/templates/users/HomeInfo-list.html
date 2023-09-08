@@ -1,0 +1,39 @@
+{% extends 'users/adminlte.html' %}
+
+{% block title  %}اطلاعات هنرستان{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+      <div class="card">
+        <!-- /.card-header -->
+        <div class="card-body table-responsive p-0">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>اطلاعات</th>
+                <th>شماره تلفن هنرستان</th>
+                <th>ویراش</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for faq in object_list %}
+                {% if user.is_superuser%}
+                  <tr>
+                    <td>اطلاعات هنرستان</td>
+                    <td>
+                      <h4> {{faq.phone}}</h4>
+                    </td>
+                      <td><a class="badge badge-primary" style="font-size: 13px;" href="{% url 'users:HomeInfo-update' faq.pk %}">ویرایش و حذف</a></td>
+                  </tr>
+                  {%endif%}
+                {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+    </div>
+  </div>
+{% endblock %}

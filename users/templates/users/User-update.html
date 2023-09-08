@@ -1,0 +1,47 @@
+{% extends 'users/adminlte.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+ویرایش کاربر
+{%endblock%}
+{% block content %}
+    <div class="col-md-12">
+        <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title mb-0 float-left">ویرایش کاربر</h3>
+        </div>
+            <div class="card-body">
+                <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+                    <div class="form-row">
+                        <div class="form-group col-6">
+                            {{form.username|as_crispy_field }}
+                        </div>
+                        <div class="form-group col-md-6 mb-0">
+                            {{form.first_name|as_crispy_field }}
+                        </div>
+                        <div class="form-group col-md-6 mb-0">
+                            {{form.last_name|as_crispy_field }}
+                        </div>
+                        <div class="form-group col-md-6 mb-0">
+                            {{form.email|as_crispy_field }}
+                        </div>
+                        <div class="form-group col-md-6 mb-0" style="display: -webkit-inline-box!important;">
+                            <a class="btn btn-danger"  href="{% url 'users:password_change' user.pk %}" target="_blank" rel="noopener noreferrer">برای بازیابی گذرواژه اینجا کلیک کنید</a>
+                        </div>
+                        {%if request.user.is_superuser %}
+                        <div class="form-group col-md-6 mb-0">
+                            {{form.is_superuser|as_crispy_field }}
+                        </div>
+                        {%endif%}
+                        <div class="form-group col-md-6 mb-0">
+                            {{form.is_staff|as_crispy_field }}
+                        </div>
+                        <br><br>
+                    </div>
+                    <input type="submit" value="ویرایش کاربر" class="btn btn-success">
+                    <a class="btn btn-danger" href="{% url 'users:User-delet' user.pk %}">حذف کاربر</a>
+
+            </form>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,38 @@
+{%extends 'base.html'%}
+{%load static%}
+
+  
+  {%block head%}
+  <link rel="stylesheet" href=" {% static 'css/circulars_detail.css' %} ">
+    <title>اطلاعات جزوه</title>
+    {%endblock head%}
+  </head>
+<body>
+
+    {%block content%}
+
+    <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <div class="card mt-4 shadow-lg">
+              <div class="card-body">
+                <h3 class="card-title text-center text-primary">{{handout.title}}</h3>
+                <h4 style="text-align: center;"><a href="{{handout.file.url}}" style="color: red;">دانلود فایل جزوه</a></h4>
+                {% if handout.other_files.all %}
+                <p style="text-align: center; margin-top: 10px; margin-bottom: 10px;"> : دیگر فایل های جزوه</p>
+                {% for file in handout.other_files.all %}
+                <h4 style="text-align: center;"><a href="{{file.other_files.url}}" style="color: red;">دانلود فایل جزوه</a></h4>
+                {% endfor %}
+                {% endif %}
+                <p class="card-text text-center" style="margin-top: 20px;"><small class="text-muted">نام هنرآموز : {{handout.create_by}}</small></p>
+                <p class="card-text text-center" style="margin-top: 10px;"><small class="text-muted">ساخته شده در تاریخ {{handout.jpublish}}</small></p>
+                <a class="back btn btn-outline-danger" href="{{previous_url}}" style="margin-top: 20px;"> بازگشت </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      {%endblock content%}
+

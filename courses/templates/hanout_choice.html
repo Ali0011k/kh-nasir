@@ -1,0 +1,35 @@
+{%extends 'base.html'%}
+{%load static%}
+
+{%block head%}
+<title>جزوه های رشته ی {{section}}</title>
+{%endblock head%}
+
+
+{%block content%}
+
+<main dir="rtl">
+
+    <div class="search-container" dir="rtl">
+        <form action="" method="POST">
+            {%csrf_token%}
+            <input type="text" name="title" id="id_title" maxlength="50" class="search-input form-control" placeholder="جست و جو بر اساس عنوان..."	required>
+            <button type="submit" class="btn btn-outline-primary">جست وجو</button>
+        </form>
+    </div>
+    
+    {%for handout in handouts%}
+
+    <article class="article">
+    <h1>عنوان جزوه : {{handout.title|safe}}</h1><br>
+    <h5 style="text-align: start;">نام درس : {{handout.lesson}}</h2>
+    <h6>نام هنرآموز : {{handout.create_by}}</h6>
+    <h6>تاریخ انتشار : {{handout.jpublish}}</h6>
+
+
+    <a href="/handouts_detail/?pk={{handout.pk}}" class="post_deatiles btn btn-outline-primary">مشاهده اطلاعات کامل</a>
+    </article>
+    {%endfor%}
+</main>
+<br><br><br>
+{% endblock content%}

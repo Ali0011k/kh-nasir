@@ -1,0 +1,51 @@
+{% extends 'users/adminlte.html' %}
+
+{% block title  %}لیست بخشنامه ها{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+      <div class="card">
+        <!-- /.card-header -->
+        <div class="card-body table-responsive p-0">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>عنوان بخشنامه</th>
+                <th>متن بخشنامه</th>
+                <th>تصویر بخشنامه</th>
+                <th>زمان ساخت</th>
+                <th>ویراش و حذف</th>
+                <th>وضعیت</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for circular in object_list %}
+                {% if user.is_superuser or user.is_staff %}
+                  <tr>
+                    <td>
+                      <a href="{% url 'users:Circular-update' circular.pk %}"> {{circular.title}}</a>
+                    </td>
+                      <td>{{circular.text|striptags|safe|truncatewords:"30"}}</td>
+                      <td><a href="{{circular.image.url}}" target="_blank" rel="noopener noreferrer"><img src="{{circular.image.url}}" width="100px" height="60px"></a></td>
+                      <td>{{circular.jpublish}}</td>
+                      <td><a class="badge badge-primary" style="font-size: 13px;" href="{% url 'users:Circular-update' circular.pk %}">ویرایش و حذف</a></td>
+                      <td>
+                        {% if circular.status == 'p' %}
+                          <span class="badge badge-success">منتشر شده</span>
+                        {% else %}
+                              <span class="badge badge-danger">پیش نویس</span>
+                        {% endif %}
+                      </td>
+                  </tr>
+                  {%endif%}
+                {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+    </div>
+  </div>
+{% endblock %}

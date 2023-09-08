@@ -1,0 +1,114 @@
+@font-face {
+    font-family: Sahel;
+    src: url('Sahel.eot');
+    src: url('Sahel.eot?#iefix') format('embedded-opentype'),
+         url('Sahel.woff2') format('woff2'),
+         url('Sahel.woff') format('woff'),
+         url('Sahel.ttf') format('truetype');
+    font-weight: normal;
+}
+
+body{
+    direction: rtl;
+    text-align: right;
+
+}
+
+header.masthead .page-heading h1, header.masthead .page-heading .h1, header.masthead .site-heading h1, header.masthead .site-heading .h1 {
+    font-size: 5rem;
+    font-family: 'Sahel';
+    font-size: 40px;
+}
+
+
+.navbar-nav  {
+    margin-left: initial !important;
+    margin-right: auto;
+}
+
+
+#mainNav .navbar-nav > li.nav-item > a.nav-link {
+    color: #fff;
+    font-family: 'Sahel';
+}
+
+
+#mainNav .navbar-brand {
+    color: #fff;
+    font-family: "Sahel";
+}
+
+.post-preview > a > .post-title {
+    font-size: 2.25rem;
+    font-family: "Sahel";
+    font-size: xx-large;
+}
+
+.post-meta {
+    text-align: left;
+}
+
+.post-preview > a > .post-subtitle {
+    font-weight: 300;
+    margin-bottom: 0.625rem;
+    font-family: 'Sahel';
+    font-size: 20px;
+}
+
+.post-preview > a > .post-subtitle {
+    font-weight: 300;
+    margin-bottom: 0.625rem;
+    font-family: 'Sahel';
+    font-size: 18px;
+}
+
+.post-preview > a {
+    color: #212529;
+    font-family: "Sahel";
+    font-size: 15px;
+}
+
+.text-uppercase {
+    text-transform: uppercase !important;
+    float: left !important;
+    font-family: 'Sahel';
+    
+}
+
+.post-preview > .post-meta {
+    font-size: 1.125rem;
+    font-style: italic;
+    margin-top: 0;
+    color: #6c757d;
+    font-family: "Sahel";
+}
+
+.post-preview > a > .post-title {
+    font-size: 2.25rem;
+    font-family: "Sahel";
+    font-size: 26px;
+}
+
+p {
+    margin: 2rem 0;
+    font-family: "Sahel";
+    font-size: 20px;
+}
+
+
+.text-center {
+    text-align: center !important;
+    font-family: 'Sahel';
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    font-family: 'Sahel';
+}
+
+.btn {
+    letter-spacing: 0.0625em;
+    font-family: 'Sahel';
+    float: left !important;
+    margin-left: 10px;
+}

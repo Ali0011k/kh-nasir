@@ -1,0 +1,73 @@
+{% extends 'users/adminlte.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}افزودن کاربر{% endblock %}
+
+{% block content %}
+    <div class="col-md-12">
+        <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title mb-0 float-left">افزودن کاربر</h3>
+        </div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">{% csrf_token %}
+                    <div class="form-row">
+                        <div class="form-group col-6">
+                            {{form.username|as_crispy_field }}
+                        </div>
+                        <div class="form-group col-md-6 mb-0">
+                            <div id="div_id_first_name" class="form-group">
+                                <label for="id_first_name" >
+                                        نام
+                                </label>
+                                    <div>             
+                                        <input type="text" name="first_name" maxlength="30" class="textinput form-control" id="id_first_name">
+                                        <small id="hint_id_first_name" class="form-text text-muted">اختیاری</small>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6 mb-0">
+                            <div id="div_id_last_name" class="form-group">
+                                <label for="id_last_name" class="">
+                                    نام خانوادگی
+                                </label>                
+                                <div>                   
+                                    <input type="text" name="last_name" maxlength="30" class="textinput form-control" id="id_last_name">
+                                    <small id="hint_id_last_name" class="form-text text-muted">اختیاری</small>
+                                </div>
+                                    
+                                
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6 mb-0">
+                            <div id="div_id_email" class="form-group">
+                                <label for="id_email" class=" requiredField">
+                                    آدرس ایمیل<span class="asteriskField">*</span>
+                                </label>
+                                <div>               
+                                    <input type="email" name="email" maxlength="254" class="emailinput form-control" required="" id="id_email">
+                                    <small id="hint_id_email" class="form-text text-muted">یک آدرس ایمیل صحیح وارد کنید</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6 mb-0">
+                            {{form.password1|as_crispy_field }}
+                        </div>
+                        <div class="form-group col-md-6 mb-0">
+                            {{form.password2|as_crispy_field }}
+                        </div>
+                        {% if user.is_superuser %}
+                        <div class="form-group col-md-6 mb-0">
+                            {{form.is_superuser|as_crispy_field }}
+                        </div>
+                        <div class="form-group col-md-6 mb-0">
+                            {{form.is_staff|as_crispy_field }}
+                        </div>
+                        {%endif%}
+                    </div>
+                    
+                    <button class="btn btn-success">افزودن کاربر</button>
+            </form>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,58 @@
+{%extends 'base.html'%}
+{% load static %}
+{%block head%}
+
+  <title>نمونه کار ها</title>
+	<style>
+		.product-item {
+            margin-top: 20px;
+			border: 1px solid #ddd;
+			border-radius: 4px;
+			padding: 15px;
+			margin-bottom: 20px;
+		}
+
+		.product-image {
+			max-width: 100%;
+			height: auto;
+            margin: 0!important;
+		}
+
+		.product-title {
+            text-align: center;
+			font-size: 18px;
+			margin-top: 10px;
+		}
+
+		.product-description {
+			margin-top: 5px;
+            text-align: center;
+		}
+
+		.product-button {
+			margin-top: 10px;
+            width: 100%;
+		}
+
+	</style>
+  {% endblock %}
+
+{% block content%}
+    
+	<section class="product-section">
+		<div class="container">
+            <div class="row">
+                {% for work in works %}
+                <div class="col-md-4">
+					<div class="product-item">
+						<img src="{{work.image.url}}" alt="Product Image" class="product-image">
+						<h4 class="product-title">{{work.name}}</h4>
+						<p class="product-description">...{{work.caption | slice:"30" | striptags | safe}}</p>
+						<a href="/Works/detail/?pk={{work.pk}}" class="btn btn-primary product-button">جزئیات</a>
+					</div>
+				</div>
+                {% endfor %}
+			</div>
+		</div>
+	</section>
+  {% endblock %}

@@ -1,0 +1,14 @@
+{
+    "platform": "django",
+    "app" : "kh-nasir",
+    "disks":[
+        {
+            "name":"docs",
+            "mountTo":"media/docs"
+        },
+        {
+            "name":"images",
+            "mountTo":"media/images"
+        }
+    ]
+}

@@ -1,0 +1,35 @@
+{% extends 'users/adminlte.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}افزودن رشته{% endblock %}
+
+
+{% block content %}
+    <div class="col-md-12">
+        <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title mb-0 float-left">افزودن رشته جدید</h3>
+        </div>
+            <div class="card-body">
+                {% if messages %}
+                <ul class="messages">
+                  {% for message in messages %}
+                  <center class="alert {{ message.tags }}" role="alert">
+                      {{ message }}
+                  </center>
+              {% endfor %}
+                </ul>
+                {% endif %}
+                <form method="post" enctype="multipart/form-data">{% csrf_token %}
+                    <div class="form-row">
+                        <div class="form-group col-6 ">
+                            {{form.new_choice|as_crispy_field }}
+                        </div>
+                        <div style=" display: flex; align-items: center;">
+                        <button class="btn btn-success">افزودن رشته جدید</button>
+                        </div>
+                    </div>
+            </form>
+    </div>
+
+{% endblock %}

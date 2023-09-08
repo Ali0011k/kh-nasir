@@ -1,0 +1,49 @@
+{% extends 'users/adminlte.html' %}
+
+{% block title  %}لیست جزوه ها{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+      <div class="card">
+        <!-- /.card-header -->
+        <div class="card-body table-responsive p-0">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>عنوان</th>
+                <th>فایل جزوه</th>
+                <th>زمان ساخت</th>
+                <th>ویراش و حذف</th>
+                <th>وضعیت</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for handout in object_list %}
+                {% if user.is_superuser or handout.status == 'd' or handout.create_by == request.user.get_full_name%}
+                  <tr>
+                    <td>
+                      <a href="{% url 'users:Handout-update' handout.pk %}"> {{handout.title}}</a>
+                    </td>
+                    <td><a target="_blank" href="{{ handout.file.url }}">دانلود فایل</a></td>
+                      <td>{{handout.jpublish}}</td>
+                      <td><a class="badge badge-primary" style="font-size: 13px;" href="{% url 'users:Handout-update' handout.pk %}">ویرایش و حذف</a></td>
+                      <td>
+                        {% if handout.status == 'p' %}
+                          <span class="badge badge-success">منتشر شده</span>
+                        {% else %}
+                              <span class="badge badge-danger">پیش نویس</span>
+                        {% endif %}
+                      </td>
+                  </tr>
+                  {%endif%}
+                {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+    </div>
+  </div>
+{% endblock %}

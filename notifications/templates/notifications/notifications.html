@@ -1,0 +1,45 @@
+{%extends 'base.html'%}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+
+  {%block head%}
+  <title>اطلاعیه ها</title>
+  {%endblock head%}
+  {%block links%}
+  <link rel="stylesheet" href="{% static 'css/notification.css'%}">
+  {%endblock links%}
+
+</head>
+<body>
+
+{%block content%}
+	
+	
+
+		<main dir="rtl">
+
+		<div class="search-container" dir="rtl">
+			<form action="" method="POST">
+				{%csrf_token%}
+				<input type="text" name="title" id="id_title" maxlength="50" class="search-input form-control" placeholder="جست و جو بر اساس عنوان..."	required>
+				<button type="submit" class="btn btn-outline-primary">جست وجو</button>
+			</form>
+		</div>
+		
+		{%for notification in notifications%}
+			
+		<article class="article my_font">
+		<h1>عنوان اطلاعیه : {{notification.title|safe}}</h1><br>
+		<h5>تاریخ انتشار : {{notification.jpublish}}</h6>
+		<h6>بازدید ها : {{notification.hits.count}}</h6>
+		<a href="/notification_detail/?pk={{notification.pk}} " class="post_deatiles btn btn-outline-primary">مشاهده اطلاعات کامل</a>
+	</article>
+	{%endfor%}
+</main>
+<br><br><br>
+
+{%endblock content%}
+</body>
+</html>

@@ -1,0 +1,41 @@
+{% extends 'users/adminlte.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}افزودن پرسش و پاسخ{% endblock %}
+
+{% block content %}
+    <div class="col-md-12">
+        <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title mb-0 float-left">افزودن پرسش و پاسخ</h3>
+        </div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">{% csrf_token %}
+                    <div class="form-row">
+                        <div class="form-group col-6">
+                            {{form.question|as_crispy_field }}
+                        </div>
+                        <div class="form-group col-md-6 mb-0">
+                            {{form.awnser|as_crispy_field }}
+                        </div>
+                        <div class="form-group col-md-6 mb-0">
+                            {{form.section|as_crispy_field }}
+                        </div>
+                        <div class="form-group col-md-6 mb-0">
+                            {{form.lesson_sections|as_crispy_field }}
+                        </div>
+                        <div class="form-group col-md-6 mb-0">
+                            {{form.create_by|as_crispy_field }}
+                        </div>
+                    </div>
+                    {% if user.is_superuser%}
+                    <div class="form-group col-md-6 mb-0">
+                        {{form.status|as_crispy_field }}
+                    </div>
+                    {%endif%}
+                    
+                    <button class="btn btn-success">ارسال پرسش و پاسخ</button>
+            </form>
+    </div>
+
+{% endblock %}
