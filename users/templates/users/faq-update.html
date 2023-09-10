@@ -32,8 +32,10 @@
                         </div>
                         {%endif%}
                     </div>
-                    <button class="btn btn-success">ویرایش پرسش و پاسخ</button>
-                    <a class="btn btn-danger" href="{% url 'users:faq-delet' faq.pk %}">حذف پرسش و پاسخ</a>
+                    <div style="margin-bottom: 15px; display: flex; justify-content: center;" ></div>
+                    <button class="btn btn-success" style="width: 49%; margin-left: 1%;">ویرایش پرسش و پاسخ</button>
+                    <a class="btn btn-danger" style="width: 49%;" href="{% url 'users:faq-delet' faq.pk %}">حذف پرسش و پاسخ</a>
+                </div>
 
             </form>
     </div>

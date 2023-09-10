@@ -9,6 +9,9 @@ class SectionChoice(models.Model):
 
     def __str__(self):
          return self.display_text
+    class Meta:
+        verbose_name = 'رشته'
+        verbose_name_plural = 'رشته ها'
 
 class IP_Address(models.Model):
     ip_address = models.GenericIPAddressField(verbose_name="ادرس ای پی ")

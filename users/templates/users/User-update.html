@@ -38,9 +38,10 @@
                         </div>
                         <br><br>
                     </div>
-                    <input type="submit" value="ویرایش کاربر" class="btn btn-success">
-                    <a class="btn btn-danger" href="{% url 'users:User-delet' user.pk %}">حذف کاربر</a>
-
+                    <div style="margin-bottom: 15px; display: flex; justify-content: center;" >
+                    <input type="submit" style="width: 49%; margin-left: 1%;" value="ویرایش کاربر" class="btn btn-success">
+                    <a class="btn btn-danger" style="width: 49%;" href="{% url 'users:User-delet' user.pk %}">حذف کاربر</a>
+                </div>
             </form>
     </div>
 

@@ -12,9 +12,7 @@
             <thead>
               <tr>
                 <th>تصویر بخشنامه</th>
-                {% if request.user.is_superuser %}
-                <th>جزییات</th>
-                {% endif %}
+                <th>مشاهده تصویر</th>
                 <th>شماره تصویر</th>
               </tr>
             </thead>
@@ -23,9 +21,7 @@
                    {% if user.is_superuser %}
                     <tr>
                         <td><a href="{{circular_image.image.url}}" target="_blank" rel="noopener noreferrer"><img src="{{circular_image.image.url}}" width="100px" height="60px"></a></td>
-                        {% if request.user.is_superuser %}
-                        <td><a href="{% url 'users:Circular-update' circular_image.pk %}">جزییات بخشنامه</a></td>
-                        {% endif %}
+                        <td><a href="{{circular_image.image.url}}" target="_blank" rel="noopener noreferrer">مشاهده تصویر</td>
                         <td>{{circular_image.pk}}</td>
                     </tr>
                   {% endif %}

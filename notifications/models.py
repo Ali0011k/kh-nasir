@@ -9,7 +9,9 @@ from ckeditor_uploader.fields import RichTextUploadingField
 
 class IPAddress(models.Model):
     ip_address = models.GenericIPAddressField(verbose_name="ادرس ای پی ")
-
+    class Meta:
+        verbose_name = 'آی پی'
+        verbose_name_plural = 'آی پی ها'
 class Notification(models.Model):
     STATUS_CHOICES = (
         ('d', 'پیش‌نویس'),
