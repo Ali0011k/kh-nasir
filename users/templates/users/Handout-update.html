@@ -21,8 +21,18 @@
                     </div>
                     {% for other_file in handout.other_files.all %}
                     <div class="form-group col-md-6 mb-0">
-                        {{form.other_files|as_crispy_field }}
+                        <label for="id_file" class=" requiredField">
+                            فایل دیگر جزوه<span class="asteriskField">*</span>
+                        </label>
+                        <div>
+                            
+                            در حال حاظر: <a href="{{ other_file.other_files.url }}">{{ other_file.other_files.name }}</a><br>
+                            تغییر:
+                        </div>
+                        
+                        {{ form.other_files|as_crispy_field }}
                     </div>
+                    
                     {% endfor %}
                     <div id="new-file-sections"></div> <!-- بخش جدید -->
                     <div class="form-group col-md-6 mb-0">
@@ -42,8 +52,8 @@
                 {%endif%}
                     </div>
                     <div style="margin-bottom: 15px; display: flex; justify-content: center;" >
-                        <button class="btn btn-success" style="width: 49%; margin-left: 1%;">ویرایش جزوه</button>
-                        <a class="btn btn-danger" style="width: 49%;" href="{% url 'users:Handout-delet' handout.pk %}">حذف جزوه</a>
+                        <button class="btn btn-success" style="width: 47%; margin-left: 2%;">ویرایش جزوه</button>
+                        <a class="btn btn-danger" style="width: 47%;" href="{% url 'users:Handout-delet' handout.pk %}">حذف جزوه</a>
                     </div>
                 </form>
     </div>
