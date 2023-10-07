@@ -12,9 +12,6 @@
             <thead>
               <tr>
                 <th>تصویر نمونه کار</th>
-                {% if request.user.is_superuser %}
-                <th>جزییات</th>
-                {% endif %}
                 <th>شماره تصویر</th>
               </tr>
             </thead>
@@ -22,9 +19,6 @@
                 {% for work_image in object_list %}
                     <tr>
                         <td><a href="{{work_image.image.url}}" target="_blank" rel="noopener noreferrer"><img src="{{work_image.image.url}}" width="100px" height="60px"></a></td>
-                        {% if request.user.is_superuser %}
-                        <td><a href="{% url 'users:Works-update' work_image.pk %}">جزییات نمونه کار</a></td>
-                        {% endif %}
                         <td>{{work_image.pk}}</td>
                     </tr>
                 {% endfor %}

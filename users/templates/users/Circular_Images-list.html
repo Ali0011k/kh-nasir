@@ -12,7 +12,6 @@
             <thead>
               <tr>
                 <th>تصویر بخشنامه</th>
-                <th>مشاهده تصویر</th>
                 <th>شماره تصویر</th>
               </tr>
             </thead>
@@ -21,7 +20,6 @@
                    {% if user.is_superuser %}
                     <tr>
                         <td><a href="{{circular_image.image.url}}" target="_blank" rel="noopener noreferrer"><img src="{{circular_image.image.url}}" width="100px" height="60px"></a></td>
-                        <td><a href="{{circular_image.image.url}}" target="_blank" rel="noopener noreferrer">مشاهده تصویر</td>
                         <td>{{circular_image.pk}}</td>
                     </tr>
                   {% endif %}
