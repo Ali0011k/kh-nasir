@@ -18,7 +18,8 @@ from gallery.models import Works_Images , Circular_Images
 from courses.models import Faq , Handout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .serializers import *
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view , permission_classes
+from rest_framework.permissions import IsAdminUser , IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.status import *
 from django.utils.translation import gettext as _
@@ -390,6 +391,7 @@ class HandoutDelet(HandoutFiedsMixin, DeleteView):
 
     
 @api_view(['GET' , 'POST'])
+@permission_classes([IsAuthenticated , IsAdminUser])
 def User_serializer(request):
     
     if request.method == "GET":

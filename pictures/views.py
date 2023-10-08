@@ -3,10 +3,12 @@ from .serializers import *
 from django.shortcuts import render
 from rest_framework.status import *
 from rest_framework.decorators import *
+from rest_framework.permissions import IsAdminUser , IsAuthenticated
 from rest_framework.response import Response
 
 
 @api_view(['GET' , 'POST'])
+@permission_classes([IsAuthenticated , IsAdminUser])
 def HomePictures_serializer(request):
     
     if request.method == "GET":
@@ -28,6 +30,7 @@ def HomePictures_serializer(request):
 
 
 @api_view(['GET' , 'POST'])
+@permission_classes([IsAuthenticated , IsAdminUser])
 def HomeInfo_serializer(request):
     
     if request.method == "GET":

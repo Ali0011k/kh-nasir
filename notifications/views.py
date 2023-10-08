@@ -5,7 +5,8 @@ from .forms import SearchForm
 from time import sleep
 from django.http import Http404
 from .serializers import *
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view , permission_classes
+from rest_framework.permissions import IsAdminUser , IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.status import *
 
@@ -45,6 +46,7 @@ def notification_detail(request):
 
 
 @api_view(['GET' , 'POST'])
+@permission_classes([IsAuthenticated , IsAdminUser])
 def Notification_serializer(request):
     
     if request.method == "GET":
@@ -65,6 +67,7 @@ def Notification_serializer(request):
 
 
 @api_view(['GET' , 'POST'])
+@permission_classes([IsAuthenticated , IsAdminUser])
 def Circular_serializer(request):
     
     if request.method == "GET":

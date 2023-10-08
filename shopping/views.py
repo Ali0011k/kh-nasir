@@ -2,7 +2,8 @@ from django.shortcuts import render
 from .models import *
 from django.http import Http404
 from .serializers import *
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view , permission_classes
+from rest_framework.permissions import IsAdminUser , IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.status import *
 
@@ -30,6 +31,7 @@ def works(request):
     })
     
 @api_view(['GET' , 'POST'])
+@permission_classes([IsAuthenticated , IsAdminUser])
 def Works_serializer(request):
     
     if request.method == "GET":
