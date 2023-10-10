@@ -81,3 +81,5 @@ class Handout(models.Model):
 class File(models.Model):
     post = models.ForeignKey(Handout , on_delete= models.CASCADE , related_name='other_files' )
     other_files = models.FileField(upload_to='docs/' ,default=None , verbose_name='فایل های دیگر جزوه')
+    def __str__(self):
+        return self.other_files.url
