@@ -8,6 +8,7 @@ class FaqSerializer(serializers.ModelSerializer):
         fields = '__all__'
         
 class HandoutSerializer(serializers.ModelSerializer):
+    other_files = serializers.StringRelatedField(many=True)
     class Meta:
         model = Handout
         fields = '__all__'
