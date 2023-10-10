@@ -1,6 +1,6 @@
 # kh-nasir Project
 
-this is kh-nasir project for all Qazvin Schools
+### this is kh-nasir project for all Qazvin Schools ###
 
 if you have permission to access these files you need to create a env and then activate it<br/>
 then you need to install requirements from requirements file <br/>
