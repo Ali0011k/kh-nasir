@@ -12,5 +12,8 @@ urlpatterns = [
     path('faq/' , faq_list),
     path('faq/detail/section/' , faq),
     path('data/Handout/content/' , Handout_serializer),
-    path('data/Faq/content/' , Faq_serializer)
+    path('data/Handout/content/update/' , handout_update),
+    path('data/Faq/content/' , Faq_serializer),
+    path('data/Faq/content/update/' , faq_update),
+    
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

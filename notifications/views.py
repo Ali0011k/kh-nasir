@@ -8,6 +8,7 @@ from .serializers import *
 from rest_framework.decorators import api_view , permission_classes
 from rest_framework.permissions import IsAdminUser , IsAuthenticated
 from rest_framework.response import Response
+from rest_framework.exceptions import ParseError
 from rest_framework.status import *
 
 
@@ -66,6 +67,38 @@ def Notification_serializer(request):
             return Response(serializer.data, status=HTTP_201_CREATED)
 
 
+@api_view(['GET' , 'PUT' , 'DELETE'])
+@permission_classes([IsAuthenticated , IsAdminUser])
+def Notification_update(request):
+    if request.GET.get('id'):
+        try:
+        
+            id = request.GET.get('id')
+            notification = Notification.objects.get(id = id)
+
+        except Notification.DoesNotExist:
+            return Response(status=HTTP_404_NOT_FOUND)
+
+        if request.method == 'GET':
+            serializer = NotificationSerializer(instance=notification)
+            return Response(serializer.data)
+
+        elif request.method == 'PUT':
+            serializer = NotificationSerializer(instance=notification, data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data)
+            return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
+
+
+        elif request.method == 'DELETE':
+            notification.delete()
+            return Response(status=HTTP_204_NO_CONTENT)
+    else:
+        raise ParseError('you should send an id with your query parametrs' , code=HTTP_400_BAD_REQUEST)
+
+
+
 @api_view(['GET' , 'POST'])
 @permission_classes([IsAuthenticated , IsAdminUser])
 def Circular_serializer(request):
@@ -86,4 +119,33 @@ def Circular_serializer(request):
             serializer.save()
             return Response(serializer.data, status=HTTP_201_CREATED)
         
+@api_view(['GET' , 'PUT' , 'DELETE'])
+@permission_classes([IsAuthenticated , IsAdminUser])
+def Circular_update(request):
+    if request.GET.get('id'):
+        try:
+        
+            id = request.GET.get('id')
+            circular = Circular.objects.get(id = id)
+
+        except Circular.DoesNotExist:
+            return Response(status=HTTP_404_NOT_FOUND)
+
+        if request.method == 'GET':
+            serializer = CircularSerializer(instance=circular)
+            return Response(serializer.data)
+
+        elif request.method == 'PUT':
+            serializer = CircularSerializer(instance=circular, data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data)
+            return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
+
+
+        elif request.method == 'DELETE':
+            circular.delete()
+            return Response(status=HTTP_204_NO_CONTENT)
+    else:
+        raise ParseError('you should send an id with your query parametrs' , code=HTTP_400_BAD_REQUEST)
 

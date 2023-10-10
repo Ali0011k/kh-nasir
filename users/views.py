@@ -20,6 +20,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .serializers import *
 from rest_framework.decorators import api_view , permission_classes
 from rest_framework.permissions import IsAdminUser , IsAuthenticated
+from rest_framework.exceptions import ParseError
 from rest_framework.response import Response
 from rest_framework.status import *
 from django.utils.translation import gettext as _
@@ -409,7 +410,36 @@ def User_serializer(request):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=HTTP_201_CREATED)
+        
+@api_view(['GET' , 'PUT' , 'DELETE'])
+@permission_classes([IsAuthenticated , IsAdminUser])
+def user_serializer_update(request):
+    if request.GET.get('id'):
+        try:
+        
+            id = request.GET.get('id')
+            user = User.objects.get(id = id)
 
+        except Notification.DoesNotExist:
+            return Response(status=HTTP_404_NOT_FOUND)
+
+        if request.method == 'GET':
+            serializer = UserSerializer(instance=user)
+            return Response(serializer.data)
+
+        elif request.method == 'PUT':
+            serializer = UserSerializer(instance=user, data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data)
+            return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
+
+
+        elif request.method == 'DELETE':
+            user.delete()
+            return Response(status=HTTP_204_NO_CONTENT)
+    else:
+        raise ParseError('you should send an id with your query parametrs' , code=HTTP_400_BAD_REQUEST)
 
 # SectionChoicese
 

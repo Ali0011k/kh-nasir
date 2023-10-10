@@ -8,6 +8,7 @@ from rest_framework.decorators import api_view , permission_classes
 from rest_framework.permissions import IsAuthenticated , IsAdminUser
 from rest_framework.response import Response
 from rest_framework.status import *
+from rest_framework.exceptions import ParseError
 from django.contrib import messages
 from googletrans import Translator
 from time import sleep
@@ -87,7 +88,35 @@ def Faq_serializer(request):
             serializer.save()
             return Response(serializer.data, status=HTTP_201_CREATED)
 
-
+@api_view(['GET' , 'PUT' , 'DELETE'])
+@permission_classes([IsAuthenticated , IsAdminUser])
+def faq_update(request):
+    if request.GET.get('id'):     
+        try:
+        
+            id = request.GET.get('id')
+            faq = Faq.objects.get(id = id)
+            
+        except Faq.DoesNotExist:
+            return Response(status=HTTP_404_NOT_FOUND)
+    
+        if request.method == 'GET':
+            serializer = FaqSerializer(instance=faq)
+            return Response(serializer.data)
+    
+        elif request.method == 'PUT':
+            serializer = FaqSerializer(instance=faq, data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data)
+            return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
+    
+    
+        elif request.method == 'DELETE':
+            faq.delete()
+            return Response(status=HTTP_204_NO_CONTENT)
+    else:
+        raise ParseError('you should send an id with your query parametrs' , code=HTTP_400_BAD_REQUEST)
 
 @api_view(['GET' , 'POST'])
 @permission_classes([IsAuthenticated , IsAdminUser])
@@ -110,7 +139,35 @@ def Handout_serializer(request):
             return Response(serializer.data, status=HTTP_201_CREATED)
         
 
+@api_view(['GET' , 'PUT' , 'DELETE'])
+@permission_classes([IsAuthenticated , IsAdminUser])
+def handout_update(request):
+    if request.GET.get('id'):
+        try:
+        
+            id = request.GET.get('id')
+            handout = Handout.objects.get(id = id)
 
+        except Handout.DoesNotExist:
+            return Response(status=HTTP_404_NOT_FOUND)
+
+        if request.method == 'GET':
+            serializer = HandoutSerializer(instance=handout)
+            return Response(serializer.data)
+
+        elif request.method == 'PUT':
+            serializer = HandoutSerializer(instance=handout, data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data)
+            return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
+
+
+        elif request.method == 'DELETE':
+            handout.delete()
+            return Response(status=HTTP_204_NO_CONTENT)
+    else:
+        raise ParseError('you should send an id with your query parametrs' , code=HTTP_400_BAD_REQUEST)
 
    
         

@@ -15,6 +15,7 @@ urlpatterns = [
     path('auth/user/user_info/',user_information),
     path('auth/user/user_info/edit/<int:pk>',edit_info.as_view()),
     path('data/User/content/' , User_serializer),
+    path('data/User/content/update/' , user_serializer_update),
     
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
