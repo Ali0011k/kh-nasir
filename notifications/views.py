@@ -18,7 +18,7 @@ def notifications(request):
         form = SearchForm(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
-            all_notifications = Notification.objects.all().filter(title__icontains = cd['title']).order_by('-create_time')
+            all_notifications = Notification.objects.filter(status = 'p').filter(title__icontains = cd['title']).order_by('-create_time')
             if all_notifications is not None and len(all_notifications) >= 1:
                 return render(request,'notifications/notifications_searched.html',{'notifications':all_notifications})
             else:
