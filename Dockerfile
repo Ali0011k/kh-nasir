@@ -1,0 +1,22 @@
+FROM python:3.11.1
+
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+# ! only if data base is empty
+# ENV DJANGO_SUPERUSER_PASSWORD ali0013khani
+
+RUN mkdir /app
+WORKDIR /app
+
+COPY requirements.txt /app/
+
+RUN pip install --upgrade pip
+RUN pip install -r requirements.txt
+
+
+
+CMD python manage.py makemigrations --noinput &&\
+    python manage.py migrate --noinput &&\
+    # python manage.py createsuperuser --user ali --email kly441781@gmail.com --noinput &&\
+    python manage.py collectstatic --noinput&&\
+    python manage.py runserver 0.0.0.0:8000
