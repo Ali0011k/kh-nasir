@@ -173,13 +173,13 @@ CKEDITOR_CONFIGS = {
     },
 }
 
-DEFAULT_RENDERER_CLASSES = (
-    'rest_framework.renderers.JSONRenderer',
-)
+# DEFAULT_RENDERER_CLASSES = (
+#     'rest_framework.renderers.JSONRenderer',
+# )
 
-REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
-    ),
-    'DEFAULT_RENDERER_CLASSES': DEFAULT_RENDERER_CLASSES
-} 
+# REST_FRAMEWORK = {
+#     'DEFAULT_PERMISSION_CLASSES': (
+#         'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+#     ),
+#     'DEFAULT_RENDERER_CLASSES': DEFAULT_RENDERER_CLASSES
+# } 

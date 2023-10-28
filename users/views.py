@@ -23,6 +23,7 @@ from rest_framework.permissions import IsAdminUser , IsAuthenticated
 from rest_framework.exceptions import ParseError
 from rest_framework.response import Response
 from rest_framework.status import *
+from rest_framework import generics
 from django.utils.translation import gettext as _
 from time import sleep
 
@@ -387,62 +388,19 @@ class HandoutDelet(HandoutFiedsMixin, DeleteView):
 
 
 
+class UserApiView(generics.ListCreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [IsAuthenticated, IsAdminUser]
 
 
-
+class UserUpdateApiView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [IsAuthenticated, IsAdminUser]        
+   
+   
     
-@api_view(['GET' , 'POST'])
-@permission_classes([IsAuthenticated , IsAdminUser])
-def User_serializer(request):
-    
-    if request.method == "GET":
-        try:
-            content = User.objects.all()
-        except User.DoesNotExist:
-            return Response({
-                'error':'the content does not exist'
-            } ,status=HTTP_404_NOT_FOUND)
-        serializer = UserSerializer(content , many = True)
-
-        return Response(serializer.data)
-    elif request.method == "POST":
-        serializer = UserSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=HTTP_201_CREATED)
-        
-@api_view(['GET' , 'PUT' , 'DELETE'])
-@permission_classes([IsAuthenticated , IsAdminUser])
-def user_serializer_update(request):
-    if request.GET.get('id'):
-        try:
-        
-            id = request.GET.get('id')
-            user = User.objects.get(id = id)
-
-        except Notification.DoesNotExist:
-            return Response(status=HTTP_404_NOT_FOUND)
-
-        if request.method == 'GET':
-            serializer = UserSerializer(instance=user)
-            return Response(serializer.data)
-
-        elif request.method == 'PUT':
-            serializer = UserSerializer(instance=user, data=request.data)
-            if serializer.is_valid():
-                serializer.save()
-                return Response(serializer.data)
-            return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
-
-
-        elif request.method == 'DELETE':
-            user.delete()
-            return Response(status=HTTP_204_NO_CONTENT)
-    else:
-        raise ParseError('you should send an id with your query parametrs' , code=HTTP_400_BAD_REQUEST)
-
-# SectionChoicese
-
 class SectionChoice_list(ListView):
     model = SectionChoice
     template_name = "users/SectionChoice_list.html"
