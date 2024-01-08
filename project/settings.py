@@ -24,10 +24,10 @@ LOGOUT_REDIRECT_URL = "users:login"
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config("SECRET_KEY", cast=str)
+SECRET_KEY = config("SECRET_KEY", cast=str, default="test_key")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config("DEBUG", cast=bool, default=False)
+DEBUG = config("DEBUG", cast=bool, default=True)
 
 ALLOWED_HOSTS = ['*']
 
